@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 const ColorBox = ({ hexCode, colorName }) => {
+  const textColor =
+    parseInt(hexCode.replace('#', ''), 16) > 0xffffff / 1.1 ? 'black' : 'white';
   const styles = StyleSheet.create({
     box: {
       padding: 10,
@@ -12,7 +14,7 @@ const ColorBox = ({ hexCode, colorName }) => {
     },
     text: {
       fontWeight: 'bold',
-      color: 'white',
+      color: textColor,
     },
   });
 

@@ -1,30 +1,29 @@
-import { SafeAreaView, Text, View, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  ScrollView,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
+import Home from './screens/Home';
+import ColorPalette from './screens/ColorPalette';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import ColorBox from './components/ColorBox';
+import { createStackNavigator } from '@react-navigation/stack';
 const App = () => {
-  const styles = StyleSheet.create({
-    container: {
-      paddingTop: 50,
-      paddingHorizontal: 10,
-    },
-    heading: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginBottom: 10,
-    },
-  });
+  const Stack = createStackNavigator();
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text style={styles.heading}>
-          Here are some boxes of different colors
-        </Text>
-        <ColorBox hexCode="#2aa198" colorName="Cyan" />
-        <ColorBox hexCode="#268bd2" colorName="Blue" />
-        <ColorBox hexCode="#d33682" colorName="Magenta" />
-        <ColorBox hexCode="#cb4b16" colorName="Orange" />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="ColorPalette"
+          component={ColorPalette}
+          options={({ route }) => ({ title: route.params.paletteName })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
